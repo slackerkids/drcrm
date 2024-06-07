@@ -9,7 +9,6 @@ type ProtectedRouteType = {
 };
 
 function ProtectedRoute({ children }: ProtectedRouteType) {
-  console.log(localStorage.getItem(ACCESS_TOKEN))
   const [isAuthorized, setIsAuthorized] = useState<null | boolean>(null);
   useEffect(() => {
     auth().catch(() => setIsAuthorized(false));
