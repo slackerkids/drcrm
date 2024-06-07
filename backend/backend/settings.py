@@ -119,9 +119,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # CORS Headers Configuration
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5173"
-]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWS_CREDENTIALS = True
 
 
 # DRF Configuration
@@ -134,7 +133,7 @@ REST_FRAMEWORK = {
 
 # DRF JWT Configuration
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
