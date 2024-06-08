@@ -1,6 +1,6 @@
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div className=" font-manrope text-2xl flex justify-center ">Dashboard</div>
   )
 }
 
