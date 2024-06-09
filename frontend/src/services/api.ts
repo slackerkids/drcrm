@@ -21,4 +21,9 @@ api.interceptors.request.use(
   }
 );
 
+export function userProfileView() {
+  return api.get('/api/user/profile/');
+}
+
 export default api;
+
