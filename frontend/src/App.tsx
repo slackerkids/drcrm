@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
+import Customers from "./pages/Customers";
 
 function App() {
   return (
@@ -15,6 +16,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customers"
+          element={
+            <ProtectedRoute>
+              <Customers />
             </ProtectedRoute>
           }
         />
