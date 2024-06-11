@@ -3,13 +3,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
-from .serializers import UserSerializer, CustomerSerializer, LeadSerializer, InteractionSerializer
+from .serializers import UserCreateSerializer, UserProfileSerializer, CustomerSerializer, LeadSerializer, InteractionSerializer
 from .models import User, Customer, Lead, Interaction
 
 
 class UserRegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserCreateSerializer
     permission_classes = [AllowAny]
 
 
@@ -20,11 +20,11 @@ class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        serializer = UserProfileSerializer(request.user)
         return Response(serializer.data)
     
     def put(self, request):
-        serializer = UserSerializer(request.user, data=request.data)
+        serializer = UserProfileSerializer(request.user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

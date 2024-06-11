@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import User, Customer, Lead, Interaction
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "username", "email", "department", "role", "password"]
@@ -11,6 +11,19 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["username", "email", "department", "role"]
+        extra_kwargs = {
+            "username": {"required": False},
+            "email": {"required": False},
+            "department": {"required": False},
+            "role": {"required": False},
+        }
+
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
