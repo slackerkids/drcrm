@@ -186,7 +186,7 @@ export async function customerDetailViewPut({
   address,
 }: customerType) {
   try {
-    const response = await api.put(`/api/customers/${pk}`, {
+    const response = await api.put(`/api/customers/${pk}/`, {
       name,
       email,
       phone,
@@ -205,11 +205,10 @@ export async function customerDetailViewPut({
  */
 export async function customerDetailViewDelete(
   { pk }: customerDetailViewType,
-  navigate: ReturnType<typeof useNavigate>
 ) {
   try {
-    await api.delete(`/api/customers/${pk}`);
-    navigate("/");
+    const response = await api.delete(`/api/customers/${pk}`);
+    return response.data;
   } catch (error) {
     console.error(`Failed to delete chosen customer: ${error}`);
     throw error;

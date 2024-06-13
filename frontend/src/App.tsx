@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
 import Landing from "./pages/Landing";
+import Customers from "./pages/Customers";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           path="/customers"
           element={
             <ProtectedRoute>
-              <div>Customers page</div>
+              <Customers />
             </ProtectedRoute>
           }
         />
