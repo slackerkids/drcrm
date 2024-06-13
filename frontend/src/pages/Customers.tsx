@@ -6,7 +6,7 @@ import {
   customerDetailViewDelete,
 } from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { PencilAltIcon, EyeIcon, TrashIcon } from "@heroicons/react/outline";
+import { PencilIcon, EyeIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Button from "../components/Button";
 import CustomerForm from "../components/CustomerForm";
 
@@ -51,7 +51,7 @@ function CustomerPage() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-medium mb-4 font-epilogue">Customers</h1>
+      <h1 className="text-2xl font-medium mb-4 m-2 font-epilogue">Customers</h1>
       <div className="flex justify-end mb-4">
         <Button type="button" onClick={() => setIsAdding(true)}>
           Add +
@@ -94,7 +94,7 @@ function CustomerPage() {
                   {customer.address}
                 </td>
                 <td className="py-2 px-4 border-b flex space-x-2">
-                  <PencilAltIcon
+                  <PencilIcon
                     className="h-5 w-5 text-black hover:text-gray-700 cursor-pointer"
                     onClick={() => {
                       setIsEditing(true);

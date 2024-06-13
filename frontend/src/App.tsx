@@ -6,6 +6,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
 import Landing from "./pages/Landing";
 import Customers from "./pages/Customers";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -16,7 +18,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
-        
+
         <Route
           path="/user/profile"
           element={
@@ -29,7 +31,13 @@ function App() {
           path="/customers"
           element={
             <ProtectedRoute>
-              <Customers />
+              <div className="flex flex-col min-h-screen">
+                <Navbar />
+                <main className="flex-grow">
+                  <Customers />
+                </main>
+                <Footer />
+              </div>
             </ProtectedRoute>
           }
         />
