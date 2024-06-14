@@ -41,9 +41,14 @@ function Navbar() {
   return (
     <nav className="bg-white border-gray-200 font-manrope border-b">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link
+          to="/"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
           <img src={logo} className="h-8" alt="drcrm Logo" />
-          <span className="self-center text-2xl font-medium uppercase">drcrm</span>
+          <span className="self-center text-2xl font-medium uppercase">
+            drcrm
+          </span>
         </Link>
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <Menu as="div" className="relative">

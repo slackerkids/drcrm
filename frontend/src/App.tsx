@@ -9,6 +9,7 @@ import Customers from "./pages/Customers";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Leads from "./pages/Leads";
+import Interactions from "./pages/Interactions";
 
 function App() {
   return (
@@ -60,7 +61,13 @@ function App() {
           path="/interactions"
           element={
             <ProtectedRoute>
-              <div>Interactions page</div>
+              <div className="flex flex-col min-h-screen">
+                <Navbar />
+                <main className="flex-grow">
+                  <Interactions />
+                </main>
+                <Footer />
+              </div>
             </ProtectedRoute>
           }
         />
