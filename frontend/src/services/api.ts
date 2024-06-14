@@ -31,7 +31,7 @@ type userProfileViewPutType = {
 };
 
 type customerType = {
-  pk?: number;
+  id?: number;
   name: string;
   email: string;
   phone: string | number;
@@ -39,11 +39,11 @@ type customerType = {
 };
 
 type customerDetailViewType = {
-  pk: number;
+  id: number;
 };
 
 type leadType = {
-  pk?: number;
+  id?: number;
   lead?: number;
   customer?: number;
   name: string;
@@ -53,11 +53,11 @@ type leadType = {
 };
 
 type leadDetailViewType = {
-  pk: number;
+  id: number;
 };
 
 type interactionType = {
-  pk?: number;
+  id?: number;
   interaction_type: "phone" | "email" | "social_media" | "in_person";
   notes: string;
   date: string; // ISO date string
@@ -65,7 +65,7 @@ type interactionType = {
 };
 
 type interactionDetailViewType = {
-  pk: number;
+  id: number;
 };
 
 // Api endpoints
@@ -164,9 +164,9 @@ export async function customerCreate({
  * Takes customer id as argument
  * @returns full information about customer
  */
-export async function customerDetailViewGet({ pk }: customerDetailViewType) {
+export async function customerDetailViewGet({ id }: customerDetailViewType) {
   try {
-    const response = await api.get(`/api/customers/${pk}`);
+    const response = await api.get(`/api/customers/${id}/`);
     return response.data;
   } catch (error) {
     console.error(`Failed to fetch customer detail: ${error}`);
@@ -179,14 +179,14 @@ export async function customerDetailViewGet({ pk }: customerDetailViewType) {
  * @returns Updated information about customer
  */
 export async function customerDetailViewPut({
-  pk,
+  id,
   name,
   email,
   phone,
   address,
 }: customerType) {
   try {
-    const response = await api.put(`/api/customers/${pk}/`, {
+    const response = await api.put(`/api/customers/${id}/`, {
       name,
       email,
       phone,
@@ -203,11 +203,9 @@ export async function customerDetailViewPut({
  * Takes customer id as argument
  * @param navigate - function from React Router to navigate
  */
-export async function customerDetailViewDelete(
-  { pk }: customerDetailViewType,
-) {
+export async function customerDetailViewDelete({ id }: customerDetailViewType) {
   try {
-    const response = await api.delete(`/api/customers/${pk}`);
+    const response = await api.delete(`/api/customers/${id}/`);
     return response.data;
   } catch (error) {
     console.error(`Failed to delete chosen customer: ${error}`);
@@ -251,9 +249,9 @@ export async function leadCreate({ name, email, phone, status }: leadType) {
  * Takes lead id as argument
  * @returns full information about lead
  */
-export async function leadDetailViewGet({ pk }: leadDetailViewType) {
+export async function leadDetailViewGet({ id }: leadDetailViewType) {
   try {
-    const response = await api.get(`/api/leads/${pk}`);
+    const response = await api.get(`/api/leads/${id}/`);
     return response.data;
   } catch (error) {
     console.error(`Failed to fetch lead detail: ${error}`);
@@ -266,14 +264,14 @@ export async function leadDetailViewGet({ pk }: leadDetailViewType) {
  * @returns Updated information about lead
  */
 export async function leadDetailViewPut({
-  pk,
+  id,
   name,
   email,
   phone,
   status,
 }: leadType) {
   try {
-    const response = await api.put(`/api/leads/${pk}`, {
+    const response = await api.put(`/api/leads/${id}/`, {
       name,
       email,
       phone,
@@ -290,13 +288,10 @@ export async function leadDetailViewPut({
  * Takes lead id as argument
  * @param navigate - function from React Router to navigate
  */
-export async function leadDetailViewDelete(
-  { pk }: leadDetailViewType,
-  navigate: ReturnType<typeof useNavigate>
-) {
+export async function leadDetailViewDelete({ id }: leadDetailViewType) {
   try {
-    await api.delete(`/api/leads/${pk}`);
-    navigate("/");
+    const response = await api.delete(`/api/leads/${id}/`);
+    return response.data;
   } catch (error) {
     console.error(`Failed to delete chosen lead: ${error}`);
     throw error;
@@ -345,10 +340,10 @@ export async function interactionCreate({
  * @returns full information about interaction
  */
 export async function interactionDetailViewGet({
-  pk,
+  id,
 }: interactionDetailViewType) {
   try {
-    const response = await api.get(`/api/interactions/${pk}`);
+    const response = await api.get(`/api/interactions/${id}/`);
     return response.data;
   } catch (error) {
     console.error(`Failed to fetch interaction detail: ${error}`);
@@ -361,14 +356,14 @@ export async function interactionDetailViewGet({
  * @returns Updated information about interaction
  */
 export async function interactionDetailViewPut({
-  pk,
+  id,
   interaction_type,
   notes,
   date,
   client_type,
 }: interactionType) {
   try {
-    const response = await api.put(`/api/interactions/${pk}`, {
+    const response = await api.put(`/api/interactions/${id}/`, {
       interaction_type,
       notes,
       date,
@@ -385,13 +380,12 @@ export async function interactionDetailViewPut({
  * Takes interaction id as argument
  * @param navigate - function from React Router to navigate
  */
-export async function interactionDetailViewDelete(
-  { pk }: interactionDetailViewType,
-  navigate: ReturnType<typeof useNavigate>
-) {
+export async function interactionDetailViewDelete({
+  id,
+}: interactionDetailViewType) {
   try {
-    await api.delete(`/api/interactions/${pk}`);
-    navigate("/");
+    const response = await api.delete(`/api/interactions/${id}/`);
+    return response.data;
   } catch (error) {
     console.error(`Failed to delete chosen interaction: ${error}`);
     throw error;

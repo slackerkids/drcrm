@@ -3,32 +3,37 @@ import Button from "./Button";
 import Input from "./Input";
 
 type CustomerFormType = {
-    customer?: any;
-    onSubmit: (customer: any) => void;
-    onClose: () => void;
+  customer?: any;
+  onSubmit: (customer: any) => void;
+  onClose: () => void;
+};
+
+function CustomerForm({ customer = {}, onSubmit, onClose }: CustomerFormType) {
+  const [form, setForm] = useState({
+    id: customer?.id || "",
+    name: customer.name || "",
+    email: customer.email || "",
+    phone: customer.phone || "",
+    address: customer.address || "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   };
-  
-  function CustomerForm({ customer = {}, onSubmit, onClose }: CustomerFormType) {
-    const [form, setForm] = useState({
-      name: customer.name || "",
-      email: customer.email || "",
-      phone: customer.phone || "",
-      address: customer.address || "",
-    });
-  
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setForm({ ...form, [name]: value });
-    };
-  
-    const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-      onSubmit({ ...form, pk: customer.id });
-      if (onClose) onClose();
-    };
-  
-    return (
-      <form onSubmit={handleSubmit} className="mt-4 p-4 bg-slate-100 rounded-lg">
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit({ ...form, pk: customer.id });
+    if (onClose) onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+      <form
+        onSubmit={handleSubmit}
+        className="mt-4 p-4 bg-white rounded-lg w-3/4 md:w-1/2 lg:w-1/3"
+      >
         <div className="mb-4">
           <label className="block mb-1 font-medium font-epilogue">Name</label>
           <Input
@@ -89,7 +94,8 @@ type CustomerFormType = {
           )}
         </div>
       </form>
-    );
-  }
+    </div>
+  );
+}
 
 export default CustomerForm;
