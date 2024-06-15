@@ -27,7 +27,17 @@ function Interactions() {
   };
 
   const handleAddInteraction = async (newInteraction: any) => {
-    const data = await interactionCreate(newInteraction);
+    
+    const clientIdNumber = parseInt(newInteraction.client_id, 10);
+
+    const payload: any = {
+      [newInteraction.client_type]: clientIdNumber,
+      interaction_type: newInteraction.interaction_type,
+      notes: newInteraction.notes,
+      date: newInteraction.date,
+    };
+
+    const data = await interactionCreate({payload});
     setInteractions([...interactions, data]);
     setIsAdding(false);
   };

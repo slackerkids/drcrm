@@ -59,9 +59,10 @@ type leadDetailViewType = {
 type interactionType = {
   id?: number;
   interaction_type: "phone" | "email" | "social_media" | "in_person";
+  lead?: number
+  customer?: number
   notes: string;
-  date: string; // ISO date string
-  client_type: "lead" | "customer";
+  date: string;
 };
 
 type interactionDetailViewType = {
@@ -315,19 +316,10 @@ export async function interactionListView() {
  * Creates new interaction,
  * @returns created interaction info
  */
-export async function interactionCreate({
-  interaction_type,
-  notes,
-  date,
-  client_type,
-}: interactionType) {
+export async function interactionCreate({ payload }: any) {
   try {
-    const response = await api.post("/api/interactions/", {
-      interaction_type,
-      notes,
-      date,
-      client_type,
-    });
+    console.log(payload)
+    const response = await api.post("/api/interactions/", payload);
     return response.data;
   } catch (error) {
     console.error(`Failed to create interaction: ${error}`);
@@ -360,14 +352,12 @@ export async function interactionDetailViewPut({
   interaction_type,
   notes,
   date,
-  client_type,
 }: interactionType) {
   try {
     const response = await api.put(`/api/interactions/${id}/`, {
       interaction_type,
       notes,
       date,
-      client_type,
     });
     return response.data;
   } catch (error) {

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "./Button";
 import Input from "./Input";
+import { customerListView, leadListView } from "../services/api";
 
 type InteractionFormProps = {
   interaction?: any;
@@ -19,7 +20,21 @@ function InteractionForm({
     notes: interaction?.notes || "",
     date: interaction?.date || "",
     client_type: interaction?.client_type || "",
+    client_id: interaction?.client_id || "",
   });
+
+  const [customers, setCustomers] = useState<any[]>([]);
+  const [leads, setLeads] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const customersData = await customerListView();
+      const leadsData = await leadListView();
+      setCustomers(customersData);
+      setLeads(leadsData);
+    }
+    fetchData();
+  }, []);
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -47,7 +62,7 @@ function InteractionForm({
             name="interaction_type"
             value={formData.interaction_type}
             onChange={handleChange}
-            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-2"
+            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-0"
             required
           >
             <option value="email">Email</option>
@@ -87,13 +102,38 @@ function InteractionForm({
             name="client_type"
             value={formData.client_type}
             onChange={handleChange}
-            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-2"
+            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-0"
             required
           >
+            <option value="">Select Client Type</option>
             <option value="lead">Lead</option>
             <option value="customer">Customer</option>
           </select>
         </div>
+        {formData.client_type && (
+          <div className="mb-4">
+            <label className="block mb-1 font-medium font-epilogue">
+              {formData.client_type.charAt(0).toUpperCase() +
+                formData.client_type.slice(1)}
+            </label>
+            <select
+              name="client_id"
+              value={formData.client_id}
+              onChange={handleChange}
+              className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-0"
+              required
+            >
+              <option value="">Select {formData.client_type}</option>
+              {(formData.client_type === "lead" ? leads : customers).map(
+                (client) => (
+                  <option key={client.id} value={client.id}>
+                    {client.name}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+        )}
         <div className="flex justify-end space-x-2">
           <Button
             type="button"
