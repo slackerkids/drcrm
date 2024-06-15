@@ -1,4 +1,3 @@
-// InteractionDetail.tsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -75,9 +74,9 @@ function InteractionView() {
 
   return (
     <div className="p-6 bg-white rounded">
-      <h1 className="text-2xl font-bold mb-4">Interaction Details</h1>
+      <h1 className="text-2xl font-medium mb-4 font-epilogue">Interaction Details</h1>
       {interaction ? (
-        <div className="space-y-2">
+        <div className="space-y-2 font-manrope">
           <div>
             <strong>ID:</strong> {interaction.id}
           </div>
