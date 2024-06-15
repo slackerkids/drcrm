@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Leads from "./pages/Leads";
 import Interactions from "./pages/Interactions";
+import InteractionView from "./components/InteractionView";
 
 function App() {
   return (
@@ -65,6 +66,20 @@ function App() {
                 <Navbar />
                 <main className="flex-grow">
                   <Interactions />
+                </main>
+                <Footer />
+              </div>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/interactions/:interactionId"
+          element={
+            <ProtectedRoute>
+              <div className="flex flex-col min-h-screen">
+                <Navbar />
+                <main className="flex-grow">
+                  <InteractionView />
                 </main>
                 <Footer />
               </div>

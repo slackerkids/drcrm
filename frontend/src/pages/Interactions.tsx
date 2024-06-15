@@ -88,8 +88,7 @@ function Interactions() {
     navigate(`/interactions/${interactionId}`);
   };
 
-
-  function getInteractionTypeLabel(type:string) {
+  function getInteractionTypeLabel(type: string) {
     switch (type) {
       case "email":
         return "Email";
@@ -102,6 +101,11 @@ function Interactions() {
       default:
         return type;
     }
+  }
+
+  function formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
   }
 
   return (
@@ -119,13 +123,13 @@ function Interactions() {
           <thead>
             <tr>
               <th className="py-2 px-4 border-b border-r font-medium font-epilogue">
+                Client
+              </th>
+              <th className="py-2 px-4 border-b border-r font-medium font-epilogue">
                 Interaction Type
               </th>
               <th className="py-2 px-4 border-b border-r font-medium font-epilogue">
                 Notes
-              </th>
-              <th className="py-2 px-4 border-b border-r font-medium font-epilogue">
-                Client
               </th>
               <th className="py-2 px-4 border-b border-r font-medium font-epilogue">
                 Date
@@ -139,12 +143,6 @@ function Interactions() {
             {interactions.map((interaction) => (
               <tr key={interaction.id} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border-b border-r font-manrope">
-                  {getInteractionTypeLabel(interaction.interaction_type)}
-                </td>
-                <td className="py-2 px-4 border-b border-r font-manrope">
-                  {interaction.notes}
-                </td>
-                <td className="py-2 px-4 border-b border-r font-manrope">
                   {interaction.lead && (
                     <span>{resolveName(interaction.lead)}</span>
                   )}
@@ -153,7 +151,14 @@ function Interactions() {
                   )}
                 </td>
                 <td className="py-2 px-4 border-b border-r font-manrope">
-                  {interaction.date}
+                  {getInteractionTypeLabel(interaction.interaction_type)}
+                </td>
+                <td className="py-2 px-4 border-b border-r font-manrope">
+                  {interaction.notes}
+                </td>
+
+                <td className="py-2 px-4 border-b border-r font-manrope">
+                  {formatDate(interaction.date)}
                 </td>
                 <td className="py-2 px-4 border-b flex space-x-2">
                   <PencilIcon

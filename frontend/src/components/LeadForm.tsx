@@ -75,7 +75,7 @@ function LeadForm({ lead, onSubmit, onClose }: LeadFormProps) {
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-0"
+            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-2"
             required
           >
             <option value="pending">Pending</option>

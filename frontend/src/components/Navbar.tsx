@@ -74,9 +74,9 @@ function Navbar() {
                   {user ? (
                     <div className="text-gray-900">
                       <div className="text-lg font-medium">{user.username}</div>
-                      <div className="text-sm">{user.email}</div>
-                      <div className="text-sm">{user.department}</div>
-                      <div className="text-sm">{user.role}</div>
+                      <div className="text-sm mt-4"><span className="font-bold">Email:</span> {user.email}</div>
+                      <div className="text-sm mt-2"><span className="font-bold">Department:</span> {user.department}</div>
+                      <div className="text-sm mt-2"><span className="font-bold">Role:</span> {user.role}</div>
                     </div>
                   ) : (
                     <div className="text-sm text-gray-900">
@@ -127,7 +127,7 @@ function Navbar() {
             <li>
               <Link
                 to="/"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                className="block py-2 px-3 text-slate-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-slate-700 md:p-0 transition duration-300"
               >
                 Home
               </Link>
@@ -135,7 +135,7 @@ function Navbar() {
             <li>
               <Link
                 to="/customers"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                className="block py-2 px-3 text-slate-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-slate-700 md:p-0 transition duration-300"
               >
                 Customers
               </Link>
@@ -143,7 +143,7 @@ function Navbar() {
             <li>
               <Link
                 to="/leads"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                className="block py-2 px-3 text-slate-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-slate-700 md:p-0 transition duration-300"
               >
                 Leads
               </Link>
@@ -151,7 +151,7 @@ function Navbar() {
             <li>
               <Link
                 to="/interactions"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                className="block py-2 px-3 text-slate-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-slate-700 md:p-0 transition duration-300"
               >
                 Interactions
               </Link>

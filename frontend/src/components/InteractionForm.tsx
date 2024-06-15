@@ -62,7 +62,7 @@ function InteractionForm({
             name="interaction_type"
             value={formData.interaction_type}
             onChange={handleChange}
-            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-0"
+            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-2"
             required
           >
             <option value="email">Email</option>
@@ -102,7 +102,7 @@ function InteractionForm({
             name="client_type"
             value={formData.client_type}
             onChange={handleChange}
-            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-0"
+            className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-2"
             required
           >
             <option value="">Select Client Type</option>
@@ -120,7 +120,7 @@ function InteractionForm({
               name="client_id"
               value={formData.client_id}
               onChange={handleChange}
-              className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-0"
+              className="appearance-none border border-slate-200 text-gray-500 rounded-md block p-2 font-manrope text-[16px] w-full m-2"
               required
             >
               <option value="">Select {formData.client_type}</option>
