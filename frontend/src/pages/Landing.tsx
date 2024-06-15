@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Landing() {
   const [open, setOpen] = useState(false);
@@ -7,13 +8,11 @@ function Landing() {
     <div>
       <header className="bg-slate-900">
         <nav className="container relative flex items-center justify-between px-6 py-8 mx-auto text-slate-100">
-          <a href="#">
-            <img
-              src="src/assets/logo_white.png"
-              alt="White logo"
-              className="w-12 md:w-12 md:h-12"
-            />
-          </a>
+          <img
+            src="src/assets/logo_white.png"
+            alt="White logo"
+            className="w-12 md:w-12 md:h-12"
+          />
 
           <button onClick={() => setOpen(!open)} className="md:hidden">
             <span style={{ display: open ? "none" : "block" }}>
@@ -53,30 +52,24 @@ function Landing() {
               open ? "translate-x-0 opacity-100" : "opacity-0 -translate-x-full"
             }`}
           >
-            <a
-              href="#"
-              className="block font-manrope text-gray-100 transition-colors duration-300 md:px-6 hover:text-gray-400"
-            >
-              Home
-            </a>
-            <a
-              href="#"
+            <Link
+              to="/customers"
               className="block font-manrope text-gray-100 transition-colors duration-300 md:px-6 hover:text-gray-400"
             >
               Customers
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/leads"
               className="block font-manrope text-gray-100 transition-colors duration-300 md:px-6 hover:text-gray-400"
             >
               Leads
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/interactions"
               className="block font-manrope text-gray-100 transition-colors duration-300 md:px-6 hover:text-gray-400"
             >
               Interactions
-            </a>
+            </Link>
           </div>
         </nav>
       </header>
@@ -178,8 +171,8 @@ function Landing() {
               <p className="text-slate-900 font-manrope">
                 Efficiently manage your customer base with intuitive tools.
               </p>
-              <a
-                href="#"
+              <Link
+                to="/customers"
                 className="inline-flex p-2 text-white capitalize transition-colors duration-300 transform bg-gray-700 rounded-full rtl:-scale-x-100 hover:underline hover:text-gray-400"
               >
                 <svg
@@ -194,7 +187,7 @@ function Landing() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
 
             <div className="p-8 space-y-3 border-2 border-gray-600 rounded-xl">
@@ -204,8 +197,8 @@ function Landing() {
               <p className="text-slate-900 font-manrope">
                 Prioritize leads effectively to maximize your sales potential.
               </p>
-              <a
-                href="#"
+              <Link
+                to="/leads"
                 className="inline-flex p-2 text-white capitalize transition-colors duration-300 transform bg-gray-700 rounded-full rtl:-scale-x-100 hover:underline hover:text-gray-400"
               >
                 <svg
@@ -220,7 +213,7 @@ function Landing() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
 
             <div className="p-8 space-y-3 border-2 border-gray-600 rounded-xl">
@@ -231,8 +224,8 @@ function Landing() {
                 From emails to phone calls, and meetings to social media
                 interactions
               </p>
-              <a
-                href="#"
+              <Link
+                to="/interactions"
                 className="inline-flex p-2 text-white capitalize transition-colors duration-300 transform bg-gray-700 rounded-full rtl:-scale-x-100 hover:underline hover:text-gray-400"
               >
                 <svg
@@ -247,7 +240,7 @@ function Landing() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

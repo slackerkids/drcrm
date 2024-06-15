@@ -4,6 +4,8 @@ import {
   interactionCreate,
   interactionDetailViewPut,
   interactionDetailViewDelete,
+  customerListView,
+  leadListView,
 } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { PencilIcon, EyeIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -17,6 +19,19 @@ function Interactions() {
   const [isAdding, setIsAdding] = useState(false);
   const navigate = useNavigate();
 
+  const [customers, setCustomers] = useState<any[]>([]);
+  const [leads, setLeads] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const customersData = await customerListView();
+      const leadsData = await leadListView();
+      setCustomers(customersData);
+      setLeads(leadsData);
+    }
+    fetchData();
+  }, []);
+
   useEffect(() => {
     fetchInteractions();
   }, []);
@@ -26,8 +41,21 @@ function Interactions() {
     setInteractions(data);
   };
 
+  function resolveName(id: number) {
+    const lead = leads.find((lead) => lead.id === id);
+    if (lead) {
+      return lead.name;
+    }
+
+    const customer = customers.find((customer) => customer.id === id);
+    if (customer) {
+      return customer.name;
+    }
+
+    return "Unknown";
+  }
+
   const handleAddInteraction = async (newInteraction: any) => {
-    
     const clientIdNumber = parseInt(newInteraction.client_id, 10);
 
     const payload: any = {
@@ -37,7 +65,7 @@ function Interactions() {
       date: newInteraction.date,
     };
 
-    const data = await interactionCreate({payload});
+    const data = await interactionCreate({ payload });
     setInteractions([...interactions, data]);
     setIsAdding(false);
   };
@@ -81,10 +109,10 @@ function Interactions() {
                 Notes
               </th>
               <th className="py-2 px-4 border-b border-r font-medium font-epilogue">
-                Date
+                Client
               </th>
               <th className="py-2 px-4 border-b border-r font-medium font-epilogue">
-                Client Type
+                Date
               </th>
               <th className="py-2 px-4 border-b font-medium font-epilogue">
                 Actions
@@ -101,10 +129,15 @@ function Interactions() {
                   {interaction.notes}
                 </td>
                 <td className="py-2 px-4 border-b border-r font-manrope">
-                  {interaction.date}
+                  {interaction.lead && (
+                    <span>{resolveName(interaction.lead)}</span>
+                  )}
+                  {interaction.customer && (
+                    <span>{resolveName(interaction.customer)}</span>
+                  )}
                 </td>
                 <td className="py-2 px-4 border-b border-r font-manrope">
-                  {interaction.client_type}
+                  {interaction.date}
                 </td>
                 <td className="py-2 px-4 border-b flex space-x-2">
                   <PencilIcon
