@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import api from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../services/constants";
 import Input from "./Input";
 import Button from "./Button";
@@ -107,6 +107,13 @@ function Form({ route, method }: FormType) {
           />
           {method === "register" && registerInputs}
           <Button type="submit">{methodName}</Button>
+          <div className="mt-4 flex justify-center font-manrope text-slate-500 hover:text-slate-900 transition duration-300">
+            {method === "login" ? (
+              <Link to="/register">Create an account</Link>
+            ) : (
+              <Link to="/login">Already have an account?</Link>
+            )}
+          </div>
         </form>
       </div>
       <div className="md:block hidden w-1/2">

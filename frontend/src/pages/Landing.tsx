@@ -247,7 +247,7 @@ function Landing() {
       </main>
       <footer className="flex flex-col items-center py-10 text-slate-100 bg-slate-900">
         <p className="text-center font-manrope text-lg">
-          Copyright © 2024, DRMCRM.
+          Copyright © 2024, DRCRM
         </p>
       </footer>
     </div>

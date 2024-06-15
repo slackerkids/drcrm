@@ -24,7 +24,7 @@ function Input({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className={`rounded-md font-manrope p-2 m-2 shadow-sm border border-slate-200 outline-none focus:border-slate-600 ${className}`}
+      className={`rounded-md font-manrope p-2 m-2 shadow-sm border border-slate-200 outline-none focus:border-slate-900 ${className} hover:border-slate-500 transition duration-300`}
       required={required}
     />
   );

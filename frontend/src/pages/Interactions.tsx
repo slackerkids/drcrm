@@ -88,6 +88,22 @@ function Interactions() {
     navigate(`/interactions/${interactionId}`);
   };
 
+
+  function getInteractionTypeLabel(type:string) {
+    switch (type) {
+      case "email":
+        return "Email";
+      case "phone":
+        return "Phone Call";
+      case "social_media":
+        return "Social Media";
+      case "in_person":
+        return "In Person Meeting";
+      default:
+        return type;
+    }
+  }
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-medium mb-4 m-2 font-epilogue">
@@ -123,7 +139,7 @@ function Interactions() {
             {interactions.map((interaction) => (
               <tr key={interaction.id} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border-b border-r font-manrope">
-                  {interaction.interaction_type}
+                  {getInteractionTypeLabel(interaction.interaction_type)}
                 </td>
                 <td className="py-2 px-4 border-b border-r font-manrope">
                   {interaction.notes}
