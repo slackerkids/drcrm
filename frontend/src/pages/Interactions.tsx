@@ -41,18 +41,22 @@ function Interactions() {
     setInteractions(data);
   };
 
-  function resolveName(id: number) {
+  function resolveNameLead(id: number) {
     const lead = leads.find((lead) => lead.id === id);
     if (lead) {
       return lead.name;
     }
 
+    return "Unknown";
+  }
+
+  function resolveNameCustomer(id: number) {
     const customer = customers.find((customer) => customer.id === id);
     if (customer) {
       return customer.name;
     }
 
-    return "Unknown";
+    return "Unknown"
   }
 
   const handleAddInteraction = async (newInteraction: any) => {
@@ -144,10 +148,10 @@ function Interactions() {
               <tr key={interaction.id} className="hover:bg-gray-100">
                 <td className="py-2 px-4 border-b border-r font-manrope">
                   {interaction.lead && (
-                    <span>{resolveName(interaction.lead)}</span>
+                    <span>{resolveNameLead(interaction.lead)}</span>
                   )}
                   {interaction.customer && (
-                    <span>{resolveName(interaction.customer)}</span>
+                    <span>{resolveNameCustomer(interaction.customer)}</span>
                   )}
                 </td>
                 <td className="py-2 px-4 border-b border-r font-manrope">

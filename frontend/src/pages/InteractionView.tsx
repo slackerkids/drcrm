@@ -5,6 +5,7 @@ import {
   customerListView,
   leadListView,
 } from "../services/api";
+import Button from "../components/Button";
 
 type InteractionType = {
   id?: number;
@@ -69,39 +70,51 @@ function InteractionView() {
     }
   };
 
+  function handleGoBack() {
+    window.history.back();
+  }
+
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="p-6 bg-white rounded">
-      <h1 className="text-2xl font-medium mb-4 font-epilogue">Interaction Details</h1>
-      {interaction ? (
-        <div className="space-y-2 font-manrope">
-          <div>
-            <strong>ID:</strong> {interaction.id}
+    <>
+      <div className="p-6 bg-white rounded">
+        <h1 className="text-2xl font-medium mb-4 font-epilogue">
+          Interaction Details
+        </h1>
+        {interaction ? (
+          <div className="space-y-2 font-manrope">
+            <div>
+              <strong>ID:</strong> {interaction.id}
+            </div>
+            <div>
+              <strong>Type:</strong>{" "}
+              {getInteractionTypeLabel(interaction.interaction_type)}
+            </div>
+            <div>
+              <strong>Notes:</strong> {interaction.notes}
+            </div>
+            <div>
+              <strong>Date:</strong>{" "}
+              {new Date(interaction.date).toLocaleDateString()}
+            </div>
+            <div>
+              <strong>Client: </strong>
+              {interaction.customer
+                ? resolveName(interaction.customer, "customer")
+                : resolveName(interaction.lead, "lead")}
+            </div>
           </div>
-          <div>
-            <strong>Type:</strong>{" "}
-            {getInteractionTypeLabel(interaction.interaction_type)}
-          </div>
-          <div>
-            <strong>Notes:</strong> {interaction.notes}
-          </div>
-          <div>
-            <strong>Date:</strong>{" "}
-            {new Date(interaction.date).toLocaleDateString()}
-          </div>
-          <div>
-            <strong>Client: </strong>
-            {interaction.customer
-              ? resolveName(interaction.customer, "customer")
-              : resolveName(interaction.lead, "lead")}
-          </div>
-        </div>
-      ) : (
-        <p>No interaction found.</p>
-      )}
-    </div>
+        ) : (
+          <p>No interaction found.</p>
+        )}
+      </div>
+      <Button onClick={handleGoBack} type="button" className="ml-6 mt-0">
+        Return
+      </Button>
+    </>
   );
 }
 
