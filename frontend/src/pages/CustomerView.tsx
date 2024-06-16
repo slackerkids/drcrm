@@ -1,37 +1,37 @@
-// LeadDetail.tsx
+// CustomerDetail.tsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { leadDetailViewGet } from "../services/api";
+import { customerDetailViewGet } from "../services/api";
 import Button from "../components/Button";
 
-type LeadType = {
+type CustomerType = {
   id?: number;
   name: string;
   email: string;
   phone: string | number;
-  status: string;
+  address?: string;
 };
 
-function LeadView() {
-  const { leadId } = useParams<{ leadId: string }>();
-  const [lead, setLead] = useState<LeadType | null>(null);
+function CustomerView() {
+  const { customerId } = useParams<{ customerId: string }>();
+  const [customer, setCustomer] = useState<CustomerType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchLead = async () => {
+    const fetchCustomer = async () => {
       try {
-        const data = await leadDetailViewGet({ id: Number(leadId) });
-        setLead(data);
+        const data = await customerDetailViewGet({ id: Number(customerId) });
+        setCustomer(data);
         setLoading(false);
       } catch (error) {
-        setError("Failed to load lead details.");
+        setError("Failed to load customer details.");
         setLoading(false);
       }
     };
 
-    fetchLead();
-  }, [leadId]);
+    fetchCustomer();
+  }, [customerId]);
 
   function handleGoBack() {
     window.history.back();
@@ -44,28 +44,28 @@ function LeadView() {
     <>
       <div className="p-6 bg-white font-manrope">
         <h1 className="text-2xl font-medium mb-4 font-epilogue">
-          Lead Details
+          Customer Details
         </h1>
-        {lead ? (
+        {customer ? (
           <div className="space-y-2">
             <div>
-              <strong>ID:</strong> {lead.id}
+              <strong>ID:</strong> {customer.id}
             </div>
             <div>
-              <strong>Name:</strong> {lead.name}
+              <strong>Name:</strong> {customer.name}
             </div>
             <div>
-              <strong>Email:</strong> {lead.email}
+              <strong>Email:</strong> {customer.email}
             </div>
             <div>
-              <strong>Phone:</strong> {lead.phone}
+              <strong>Phone:</strong> {customer.phone}
             </div>
             <div>
-              <strong>Status:</strong> {lead.status}
+              <strong>Address:</strong> {customer.address}
             </div>
           </div>
         ) : (
-          <p>No lead found.</p>
+          <p>No customer found.</p>
         )}
       </div>
       <Button onClick={handleGoBack} type="button" className="ml-6 mt-0">
@@ -75,4 +75,4 @@ function LeadView() {
   );
 }
 
-export default LeadView;
+export default CustomerView;

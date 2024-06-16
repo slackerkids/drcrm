@@ -79,7 +79,7 @@ function Form({ route, method }: FormType) {
         navigate("/login");
       }
     } catch (error) {
-      alert(error);
+      alert("Something went wrong. Try again");
     }
   }
 

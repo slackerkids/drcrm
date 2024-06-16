@@ -12,6 +12,7 @@ import Leads from "./pages/Leads";
 import Interactions from "./pages/Interactions";
 import InteractionView from "./pages/InteractionView";
 import LeadView from "./pages/LeadView";
+import CustomerView from "./pages/CustomerView";
 
 function App() {
   return (
@@ -74,13 +75,13 @@ function App() {
           }
         />
         <Route
-          path="/interactions/:interactionId"
+          path="/customers/:customerId"
           element={
             <ProtectedRoute>
               <div className="flex flex-col min-h-screen">
                 <Navbar />
                 <main className="flex-grow">
-                  <InteractionView />
+                  <CustomerView />
                 </main>
                 <Footer />
               </div>
@@ -95,6 +96,20 @@ function App() {
                 <Navbar />
                 <main className="flex-grow">
                   <LeadView />
+                </main>
+                <Footer />
+              </div>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/interactions/:interactionId"
+          element={
+            <ProtectedRoute>
+              <div className="flex flex-col min-h-screen">
+                <Navbar />
+                <main className="flex-grow">
+                  <InteractionView />
                 </main>
                 <Footer />
               </div>

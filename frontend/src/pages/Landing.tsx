@@ -155,7 +155,7 @@ function Landing() {
             <div className="mt-8 lg:w-1/2 lg:px-4 lg:mt-0">
               <img
                 className="object-cover w-full rounded-xl h-96"
-                src="https://via.placeholder.com/800x600?text=Your+Image"
+                src="../src/assets/thumbnail.jpg"
                 alt="Video thumbnail"
               />
             </div>
@@ -247,7 +247,7 @@ function Landing() {
       </main>
       <footer className="flex flex-col items-center py-10 text-slate-100 bg-slate-900">
         <p className="text-center font-manrope text-lg">
-          Copyright © 2024, DRCRM
+          Copyright © 2024, DRCRM. All rights reserved.
         </p>
       </footer>
     </div>
