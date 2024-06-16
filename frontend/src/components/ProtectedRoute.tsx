@@ -29,31 +29,31 @@ function ProtectedRoute({ children }: ProtectedRouteType) {
     } catch (error) {
       setIsAuthorized(false);
     }
-  };
+  }
 
   async function auth() {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
-        setIsAuthorized(false);
-        return;
+      setIsAuthorized(false);
+      return;
     }
     const decodedToken = jwtDecode(token);
     const tokenExpiration = decodedToken.exp;
     const now = Date.now() / 1000;
 
-    // Ternary solution against undefined type. 
+    // Ternary solution against undefined type.
     if (tokenExpiration ? tokenExpiration < now : false) {
-        await refreshToken();
+      await refreshToken();
     } else {
-        setIsAuthorized(true);
+      setIsAuthorized(true);
     }
-  };
-
-  if (isAuthorized === null) {
-    return <div>Loading...</div>
   }
 
-  return isAuthorized ? children : <Navigate to="/login" />
+  if (isAuthorized === null) {
+    return <div>Loading...</div>;
+  }
+
+  return isAuthorized ? children : <Navigate to="/login" />;
 }
 
 export default ProtectedRoute;

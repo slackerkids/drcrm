@@ -2,7 +2,6 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 
 function NotFound() {
-  
   const navigate = useNavigate();
 
   function handleGoBack() {
@@ -26,7 +25,10 @@ function NotFound() {
           </p>
 
           <div className="flex items-center mt-6 gap-x-3">
-            <button className="flex items-center justify-center w-1/2 px-4 py-3 text-gray-700 transition-colors duration-200 bg-white border rounded-full gap-x-2 sm:w-auto hover:bg-gray-100" onClick={handleGoBack}>
+            <button
+              className="flex items-center justify-center w-1/2 px-4 py-3 text-gray-700 transition-colors duration-200 bg-white border rounded-full gap-x-2 sm:w-auto hover:bg-gray-100"
+              onClick={handleGoBack}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

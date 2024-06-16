@@ -5,7 +5,7 @@ type InputType = {
   placeholder: string;
   name?: string;
   className?: string;
-  required?: boolean; 
+  required?: boolean;
 };
 
 function Input({
@@ -14,7 +14,7 @@ function Input({
   onChange,
   placeholder,
   name,
-  className = "", 
+  className = "",
   required = false,
 }: InputType) {
   return (

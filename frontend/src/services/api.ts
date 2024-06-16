@@ -59,8 +59,8 @@ type leadDetailViewType = {
 type interactionType = {
   id?: number;
   interaction_type: "phone" | "email" | "social_media" | "in_person";
-  lead?: number
-  customer?: number
+  lead?: number;
+  customer?: number;
   notes: string;
   date: string;
 };
@@ -318,7 +318,7 @@ export async function interactionListView() {
  */
 export async function interactionCreate({ payload }: any) {
   try {
-    console.log(payload)
+    console.log(payload);
     const response = await api.post("/api/interactions/", payload);
     return response.data;
   } catch (error) {

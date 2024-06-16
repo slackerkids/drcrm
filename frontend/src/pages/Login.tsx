@@ -1,10 +1,8 @@
-import Form from "../components/AuthForm"
+import Form from "../components/AuthForm";
 
 function Login() {
-  localStorage.clear()
-  return (
-    <Form route="/api/token/" method="login" />
-  )
+  localStorage.clear();
+  return <Form route="/api/token/" method="login" />;
 }
 
-export default Login
+export default Login;

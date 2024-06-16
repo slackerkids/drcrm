@@ -13,10 +13,12 @@ class User(AbstractUser):
         ("development", "Development"),
         ("customer_service", "Customer Service"),
     ]
-    
-    department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES, default="blank")
+
+    department = models.CharField(
+        max_length=50, choices=DEPARTMENT_CHOICES, default="blank"
+    )
     role = models.CharField(max_length=255)
-    
+
 
 class Customer(models.Model):
     name = models.CharField(max_length=255)
@@ -37,7 +39,7 @@ class Lead(models.Model):
         ("qualified", "Qualified"),
         ("unqualified", "Unqualified"),
     ]
-    
+
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20)
@@ -54,10 +56,12 @@ class Interaction(models.Model):
         ("email", "Email"),
         ("phone", "Phone"),
         ("social_media", "Social Media"),
-        ("in_person", "In person")
+        ("in_person", "In person"),
     ]
-    
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
+
+    customer = models.ForeignKey(
+        Customer, on_delete=models.CASCADE, null=True, blank=True
+    )
     lead = models.ForeignKey(Lead, on_delete=models.CASCADE, null=True, blank=True)
     interaction_type = models.CharField(max_length=50, choices=INTERACTION_TYPE_CHOICES)
     notes = models.TextField(null=True, blank=True)

@@ -56,7 +56,7 @@ function Interactions() {
       return customer.name;
     }
 
-    return "Unknown"
+    return "Unknown";
   }
 
   const handleAddInteraction = async (newInteraction: any) => {

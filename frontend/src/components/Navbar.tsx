@@ -74,9 +74,16 @@ function Navbar() {
                   {user ? (
                     <div className="text-gray-900">
                       <div className="text-lg font-medium">{user.username}</div>
-                      <div className="text-sm mt-4"><span className="font-bold">Email:</span> {user.email}</div>
-                      <div className="text-sm mt-2"><span className="font-bold">Department:</span> {user.department}</div>
-                      <div className="text-sm mt-2"><span className="font-bold">Role:</span> {user.role}</div>
+                      <div className="text-sm mt-4">
+                        <span className="font-bold">Email:</span> {user.email}
+                      </div>
+                      <div className="text-sm mt-2">
+                        <span className="font-bold">Department:</span>{" "}
+                        {user.department}
+                      </div>
+                      <div className="text-sm mt-2">
+                        <span className="font-bold">Role:</span> {user.role}
+                      </div>
                     </div>
                   ) : (
                     <div className="text-sm text-gray-900">

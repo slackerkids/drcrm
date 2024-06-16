@@ -37,7 +37,6 @@ class LeadSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
 class InteractionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Interaction
