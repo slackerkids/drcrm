@@ -65,7 +65,7 @@ function Form({ route, method }: FormType) {
         const response = await api.post(route, { username, password });
         localStorage.setItem(ACCESS_TOKEN, response.data.access);
         localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
-        navigate("/");
+        navigate("/customers");
       } else if (method === "register") {
         await api.post(route, {
           username,
